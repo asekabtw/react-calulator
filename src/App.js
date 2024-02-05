@@ -14,6 +14,10 @@ export const ACTIONS = {
 function reducer(state, { type, payload }) {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
+      if (payload.digit === "7" && state.currentOperand === "7") return state;
+      if (payload.digit === "." && state.currentOperand === ".") return state;
+      // if (payload.digit === "." && state.currentOperand.includes("."))
+      //   return state;
       return {
         ...state,
         currentOperand: `${state.currentOperand || ""}${payload.digit}`,
@@ -36,7 +40,7 @@ function App() {
       </div>
       <button className="span-two">AC</button>
       <button>DEL</button>
-      <OperationButton operation="/" dispatch={dispatch} />
+      <OperationButton operation="÷" dispatch={dispatch} />
       <DigitButton digit="1" dispatch={dispatch} />
       <DigitButton digit="2" dispatch={dispatch} />
       <DigitButton digit="3" dispatch={dispatch} />
